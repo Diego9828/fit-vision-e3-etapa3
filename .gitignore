@@ -1,0 +1,16 @@
+# --- credenciales (nunca al repositorio; si llegan al historial hay que REVOCARLAS) ---
+*-key.json
+*service-account*.json
+*accessKeys*.csv
+.env
+.gcp/
+# --- entornos y artefactos del editor ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+.idea/
+# --- datos: los gestiona DVC (los punteros .dvc sí se versionan) ---
+# datos/crudo, datos/intermedio y datos/final los excluye DVC con su propio .gitignore

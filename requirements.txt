@@ -1,0 +1,8 @@
+dvc==3.67.1
+pandas==3.0.6
+numpy==2.5.4
+pyarrow==26.0.0
+scikit-learn==1.9.1
+pyyaml==6.0.3
+dvc-s3==3.3.0
+# conector del remoto: dvc-s3 (actual) | dvc-gs | dvc-gdrive; DVC lo exige instalado aunque no haya red

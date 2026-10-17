@@ -1,0 +1,15 @@
+name: fitvision-e3
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - dvc=3.67.1
+  - pandas=3.0.6
+  - numpy=2.5.4
+  - pyarrow=26.0.0
+  - scikit-learn=1.9.1
+  - pyyaml=6.0.3
+  # conector del remoto: DVC lo exige instalado aunque no haya red (incluso para `dvc checkout`).
+  - dvc-s3=3.3.0
+  # si el remoto final es otro, cambiar por UNO de: dvc-gs | dvc-gdrive
+# Sin claves, sin archivos de credenciales, sin rutas personales (ver docs/decisiones/0001).
