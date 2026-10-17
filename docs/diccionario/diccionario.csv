@@ -1,0 +1,15 @@
+columna,tipo,unidad,origen,descripcion,nulos,minimo,maximo
+clip_id,string,-,3.1 seleccionar,Identificador del clip. Un clip es un segmento = una repetición del ejercicio. Clave de la fila.,0,,
+video,string,-,3.1 seleccionar,Video de origen del clip (código tipo HHMMSS). Se usa como grupo para la partición; no es predictor.,0,,
+fold,int,-,3.5 formatear,Pliegue de validación (0..n_splits-1) asignado con GroupKFold por video. La fila es de prueba en su pliegue y de entrenamiento en los demás.,0,0.0,3.0
+n_frames,int,frames,3.3 construir,Frames del clip tras la limpieza. Metadato de control; no usar como predictor.,0,5.0,9.0
+postura_torso_media,float,grados,3.3 construir,Media por clip de la inclinación del torso (señal de pose MediaPipe).,0,47.3439,102.3914
+nivel_cabeza_media,float,grados,3.3 construir,Media por clip del nivel de la cabeza.,0,36.5157,48.9344
+apertura_mano_izq_media,float,razón,3.3 construir,Media por clip de la apertura de la mano izquierda (razón adimensional).,0,0.2387,0.3894
+angulo_pie_izq_media,float,grados,3.3 construir,Media por clip del ángulo del pie izquierdo.,0,48.5577,67.78
+postura_torso_desv,float,grados,3.3 construir,Desviación estándar (poblacional) por clip de la inclinación del torso.,0,1.8307,7.0267
+nivel_cabeza_desv,float,grados,3.3 construir,Desviación estándar (poblacional) por clip del nivel de la cabeza.,0,0.504,1.9105
+apertura_mano_izq_desv,float,razón,3.3 construir,Desviación estándar (poblacional) por clip de la apertura de la mano izquierda.,0,0.0038,0.0262
+angulo_pie_izq_desv,float,grados,3.3 construir,Desviación estándar (poblacional) por clip del ángulo del pie izquierdo.,0,0.7165,2.7656
+etiqueta,string,-,3.1 seleccionar,Calidad de ejecución según la fisioterapeuta (bien / mal). Variable objetivo en texto.,0,,
+y,int,-,3.5 formatear,"Variable objetivo codificada según formato.codificacion_etiqueta (bien = 1, mal = 0).",0,0.0,1.0

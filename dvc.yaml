@@ -59,3 +59,33 @@ stages:
       - columnas
     outs:
       - datos/intermedio/integrado.parquet
+
+  formatear:
+    desc: "3.5 formatear · docs/decisiones/0007-formato-y-diccionario.md, docs/decisiones/0006-integracion-y-particion.md"
+    cmd: python src/formatear.py datos/intermedio datos/final reportes/tabla_final.json
+    deps:
+      - src/formatear.py
+      - src/comun.py
+      - datos/intermedio/integrado.parquet
+    params:
+      - columnas
+      - construccion.estadisticos
+      - particion
+      - formato
+    outs:
+      - datos/final/tabla_modelado.parquet
+      - datos/final/tabla_modelado.csv
+    metrics:
+      - reportes/tabla_final.json:
+          cache: false
+
+  diccionario:
+    desc: "3.5 formatear (descripción del conjunto) · docs/decisiones/0007-formato-y-diccionario.md"
+    cmd: python src/diccionario.py datos/final/tabla_modelado.parquet docs/diccionario/descripciones.yaml docs/diccionario/diccionario.csv
+    deps:
+      - src/diccionario.py
+      - datos/final/tabla_modelado.parquet
+      - docs/diccionario/descripciones.yaml
+    outs:
+      - docs/diccionario/diccionario.csv:
+          cache: false
