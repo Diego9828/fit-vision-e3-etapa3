@@ -1,0 +1,30 @@
+{
+  "clases_excluidas_por_pocos_clips": [
+    "base"
+  ],
+  "clips_entrada": 19,
+  "clips_por_etiqueta_entrada": {
+    "base": 1,
+    "bien": 8,
+    "mal": 10
+  },
+  "clips_por_etiqueta_salida": {
+    "bien": 8,
+    "mal": 10
+  },
+  "clips_por_video": {
+    "205448": 3,
+    "205453": 2,
+    "211230": 2,
+    "211856": 11
+  },
+  "clips_salida": 18,
+  "frames_salida": 156,
+  "origen_datos": "sintetico_demo",
+  "proporcion_video_mayoritario": 0.6111,
+  "videos_en_manifest": 6,
+  "videos_sin_clips_seleccionados": [
+    "214947",
+    "215049"
+  ]
+}
