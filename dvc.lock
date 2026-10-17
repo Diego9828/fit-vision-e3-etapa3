@@ -108,3 +108,41 @@ stages:
       hash: md5
       md5: facb8562a139659023128f0c47651de3
       size: 489
+  construir:
+    cmd: python src/construir.py datos/intermedio
+    deps:
+    - path: datos/intermedio/limpio.parquet
+      hash: md5
+      md5: 6e4f13bf0c8a7134c5befd8e7387d4ab
+      size: 8509
+    - path: src/comun.py
+      hash: md5
+      md5: d891206c7da06974d55b5f972260f233
+      size: 685
+    - path: src/construir.py
+      hash: md5
+      md5: 3170a442efa079c57a5461b698268b8a
+      size: 1141
+    params:
+      params.yaml:
+        columnas:
+          id_clip: clip_id
+          frame: frame
+          video: video
+          etiqueta: etiqueta
+          n_frames: n_frames
+          senales:
+          - postura_torso
+          - nivel_cabeza
+          - apertura_mano_izq
+          - angulo_pie_izq
+        construccion:
+          estadisticos:
+            media: mean
+            desv: std
+          ddof: 0
+    outs:
+    - path: datos/intermedio/construido.parquet
+      hash: md5
+      md5: 686e5774141ca870dcdeb64a0004b2fd
+      size: 8356

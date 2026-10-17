@@ -19,3 +19,7 @@ limpieza:
     nivel_cabeza: [0, 90]
     apertura_mano_izq: [0, 1]
     angulo_pie_izq: [0, 180]
+
+construccion:
+  estadisticos: {media: mean, desv: std}   # sufijo de columna: función de pandas
+  ddof: 0
