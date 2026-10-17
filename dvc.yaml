@@ -15,3 +15,21 @@ stages:
     metrics:
       - reportes/seleccion.json:
           cache: false
+
+  limpiar:
+    desc: "3.2 limpiar · docs/decisiones/0004-limpieza-senales.md"
+    cmd: python src/limpiar.py datos/intermedio reportes/limpieza.json reportes/informe_limpieza.md
+    deps:
+      - src/limpiar.py
+      - src/comun.py
+      - datos/intermedio/frames_seleccionados.parquet
+    params:
+      - columnas
+      - limpieza
+    outs:
+      - datos/intermedio/limpio.parquet
+      - reportes/informe_limpieza.md:
+          cache: false
+    metrics:
+      - reportes/limpieza.json:
+          cache: false

@@ -1,0 +1,20 @@
+{
+  "clips_descartados": [],
+  "clips_entrada": 18,
+  "clips_salida": 18,
+  "estrategia_faltantes": "interpolacion_lineal",
+  "faltantes_originales": 0,
+  "faltantes_restantes": 0,
+  "faltantes_tras_rangos": 0,
+  "frames_congelados_eliminados": 19,
+  "frames_entrada": 156,
+  "frames_por_clip_max": 9,
+  "frames_por_clip_min": 5,
+  "frames_salida": 137,
+  "valores_fuera_de_rango": {
+    "angulo_pie_izq": 0,
+    "apertura_mano_izq": 0,
+    "nivel_cabeza": 0,
+    "postura_torso": 0
+  }
+}

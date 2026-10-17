@@ -49,3 +49,62 @@ stages:
       hash: md5
       md5: 2c042f1b040137d8f1975076d113d539
       size: 549
+  limpiar:
+    cmd: python src/limpiar.py datos/intermedio reportes/limpieza.json 
+      reportes/informe_limpieza.md
+    deps:
+    - path: datos/intermedio/frames_seleccionados.parquet
+      hash: md5
+      md5: 0b13ce15f6afe3d7b2f250b6202e35e7
+      size: 8497
+    - path: src/comun.py
+      hash: md5
+      md5: d891206c7da06974d55b5f972260f233
+      size: 685
+    - path: src/limpiar.py
+      hash: md5
+      md5: dedb99f75ee83aa263305ecb39d80ee1
+      size: 5405
+    params:
+      params.yaml:
+        columnas:
+          id_clip: clip_id
+          frame: frame
+          video: video
+          etiqueta: etiqueta
+          n_frames: n_frames
+          senales:
+          - postura_torso
+          - nivel_cabeza
+          - apertura_mano_izq
+          - angulo_pie_izq
+        limpieza:
+          eliminar_frames_congelados: true
+          estrategia_faltantes: interpolacion_lineal
+          min_frames_por_clip: 3
+          limites:
+            postura_torso:
+            - 0
+            - 180
+            nivel_cabeza:
+            - 0
+            - 90
+            apertura_mano_izq:
+            - 0
+            - 1
+            angulo_pie_izq:
+            - 0
+            - 180
+    outs:
+    - path: datos/intermedio/limpio.parquet
+      hash: md5
+      md5: 6e4f13bf0c8a7134c5befd8e7387d4ab
+      size: 8509
+    - path: reportes/informe_limpieza.md
+      hash: md5
+      md5: 64a1e5cee471de95d3a8f5851c8b2f53
+      size: 1055
+    - path: reportes/limpieza.json
+      hash: md5
+      md5: facb8562a139659023128f0c47651de3
+      size: 489
