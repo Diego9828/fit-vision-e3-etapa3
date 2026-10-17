@@ -1,7 +1,7 @@
 # Fit Vision · Etapa 3 de CRISP-DM · Preparación de datos con DVC
 
 Proyecto Integrador I · UTEC Posgrado · Evaluación continua
-**Integrantes:** _[completar nombres del equipo]_
+**Integrantes:** Diego Sánchez Salazar · Estuardo · Oliver · Yessenia Chirinos
 
 Fit Vision clasifica la **calidad de ejecución de una repetición** de ejercicio (*bien* / *mal*) a
 partir de señales de pose (MediaPipe), para dar retroalimentación objetiva al fisioterapeuta en
