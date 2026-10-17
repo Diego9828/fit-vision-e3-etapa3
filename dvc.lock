@@ -1,0 +1,51 @@
+schema: '2.0'
+stages:
+  seleccionar:
+    cmd: python src/seleccionar.py datos/crudo datos/intermedio 
+      reportes/seleccion.json
+    deps:
+    - path: datos/crudo
+      hash: md5
+      md5: 3e7ba04c658a0a182cfa7488a6d3c077.dir
+      size: 7777
+      nfiles: 21
+    - path: src/comun.py
+      hash: md5
+      md5: d891206c7da06974d55b5f972260f233
+      size: 685
+    - path: src/seleccionar.py
+      hash: md5
+      md5: 0095ed5be7b03bc763af7e48f5fa79f9
+      size: 3257
+    params:
+      params.yaml:
+        columnas:
+          id_clip: clip_id
+          frame: frame
+          video: video
+          etiqueta: etiqueta
+          n_frames: n_frames
+          senales:
+          - postura_torso
+          - nivel_cabeza
+          - apertura_mano_izq
+          - angulo_pie_izq
+        seleccion:
+          etiquetas_candidatas:
+          - bien
+          - mal
+          - base
+          min_clips_por_clase: 2
+    outs:
+    - path: datos/intermedio/clips_seleccionados.parquet
+      hash: md5
+      md5: 8dd57547d8f83e61e2f567f9f68fb06d
+      size: 2278
+    - path: datos/intermedio/frames_seleccionados.parquet
+      hash: md5
+      md5: 0b13ce15f6afe3d7b2f250b6202e35e7
+      size: 8497
+    - path: reportes/seleccion.json
+      hash: md5
+      md5: 2c042f1b040137d8f1975076d113d539
+      size: 549

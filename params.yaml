@@ -1,0 +1,11 @@
+columnas:
+  id_clip: clip_id
+  frame: frame
+  video: video
+  etiqueta: etiqueta
+  n_frames: n_frames
+  senales: [postura_torso, nivel_cabeza, apertura_mano_izq, angulo_pie_izq]
+
+seleccion:
+  etiquetas_candidatas: [bien, mal, base]
+  min_clips_por_clase: 2

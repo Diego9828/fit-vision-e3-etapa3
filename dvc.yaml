@@ -1,0 +1,17 @@
+stages:
+  seleccionar:
+    desc: "3.1 seleccionar · docs/decisiones/0002-alcance-filas.md, docs/decisiones/0003-fuentes-excluidas.md"
+    cmd: python src/seleccionar.py datos/crudo datos/intermedio reportes/seleccion.json
+    deps:
+      - src/seleccionar.py
+      - src/comun.py
+      - datos/crudo
+    params:
+      - columnas
+      - seleccion
+    outs:
+      - datos/intermedio/clips_seleccionados.parquet
+      - datos/intermedio/frames_seleccionados.parquet
+    metrics:
+      - reportes/seleccion.json:
+          cache: false
