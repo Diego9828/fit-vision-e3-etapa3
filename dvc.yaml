@@ -46,3 +46,16 @@ stages:
       - construccion
     outs:
       - datos/intermedio/construido.parquet
+
+  integrar:
+    desc: "3.4 integrar · docs/decisiones/0006-integracion-y-particion.md"
+    cmd: python src/integrar.py datos/intermedio
+    deps:
+      - src/integrar.py
+      - src/comun.py
+      - datos/intermedio/construido.parquet
+      - datos/intermedio/clips_seleccionados.parquet
+    params:
+      - columnas
+    outs:
+      - datos/intermedio/integrado.parquet
