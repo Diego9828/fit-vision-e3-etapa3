@@ -33,3 +33,16 @@ stages:
     metrics:
       - reportes/limpieza.json:
           cache: false
+
+  construir:
+    desc: "3.3 construir · docs/decisiones/0005-construccion-features.md"
+    cmd: python src/construir.py datos/intermedio
+    deps:
+      - src/construir.py
+      - src/comun.py
+      - datos/intermedio/limpio.parquet
+    params:
+      - columnas
+      - construccion
+    outs:
+      - datos/intermedio/construido.parquet
