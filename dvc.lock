@@ -146,3 +146,40 @@ stages:
       hash: md5
       md5: 686e5774141ca870dcdeb64a0004b2fd
       size: 8356
+  integrar:
+    cmd: python src/integrar.py datos/intermedio
+    deps:
+    - path: datos/intermedio/clips_seleccionados.parquet
+      hash: md5
+      md5: 8dd57547d8f83e61e2f567f9f68fb06d
+      size: 2278
+    - path: datos/intermedio/construido.parquet
+      hash: md5
+      md5: 686e5774141ca870dcdeb64a0004b2fd
+      size: 8356
+    - path: src/comun.py
+      hash: md5
+      md5: d891206c7da06974d55b5f972260f233
+      size: 685
+    - path: src/integrar.py
+      hash: md5
+      md5: 6d1c382c142b005ec6ec150e90a761c2
+      size: 1123
+    params:
+      params.yaml:
+        columnas:
+          id_clip: clip_id
+          frame: frame
+          video: video
+          etiqueta: etiqueta
+          n_frames: n_frames
+          senales:
+          - postura_torso
+          - nivel_cabeza
+          - apertura_mano_izq
+          - angulo_pie_izq
+    outs:
+    - path: datos/intermedio/integrado.parquet
+      hash: md5
+      md5: 685fd1e0c2ba2f580ad30c4a70cbdea3
+      size: 9382
