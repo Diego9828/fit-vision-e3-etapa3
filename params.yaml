@@ -9,3 +9,13 @@ columnas:
 seleccion:
   etiquetas_candidatas: [bien, mal, base]
   min_clips_por_clase: 2
+
+limpieza:
+  eliminar_frames_congelados: true
+  estrategia_faltantes: interpolacion_lineal   # alternativa: mediana_clip
+  min_frames_por_clip: 3
+  limites:                                      # rango físico plausible por señal
+    postura_torso: [0, 180]
+    nivel_cabeza: [0, 90]
+    apertura_mano_izq: [0, 1]
+    angulo_pie_izq: [0, 180]
