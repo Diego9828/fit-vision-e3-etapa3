@@ -183,3 +183,78 @@ stages:
       hash: md5
       md5: 685fd1e0c2ba2f580ad30c4a70cbdea3
       size: 9382
+  formatear:
+    cmd: python src/formatear.py datos/intermedio datos/final 
+      reportes/tabla_final.json
+    deps:
+    - path: datos/intermedio/integrado.parquet
+      hash: md5
+      md5: 685fd1e0c2ba2f580ad30c4a70cbdea3
+      size: 9382
+    - path: src/comun.py
+      hash: md5
+      md5: d891206c7da06974d55b5f972260f233
+      size: 685
+    - path: src/formatear.py
+      hash: md5
+      md5: 8c9a7f21c6ba74542442e5eacca96b70
+      size: 2803
+    params:
+      params.yaml:
+        columnas:
+          id_clip: clip_id
+          frame: frame
+          video: video
+          etiqueta: etiqueta
+          n_frames: n_frames
+          senales:
+          - postura_torso
+          - nivel_cabeza
+          - apertura_mano_izq
+          - angulo_pie_izq
+        construccion.estadisticos:
+          media: mean
+          desv: std
+        formato:
+          columna_objetivo: y
+          columna_fold: fold
+          codificacion_etiqueta:
+            mal: 0
+            bien: 1
+        particion:
+          columna_grupo: video
+          n_splits: 4
+    outs:
+    - path: datos/final/tabla_modelado.csv
+      hash: md5
+      md5: 9f819cab09a32d62a8891634272d87b9
+      size: 3166
+    - path: datos/final/tabla_modelado.parquet
+      hash: md5
+      md5: 1a8645af29dc4642407eff34315bce01
+      size: 10448
+    - path: reportes/tabla_final.json
+      hash: md5
+      md5: cdf3ecd3e4c49d08ea9cd02a9815fac7
+      size: 605
+  diccionario:
+    cmd: python src/diccionario.py datos/final/tabla_modelado.parquet 
+      docs/diccionario/descripciones.yaml docs/diccionario/diccionario.csv
+    deps:
+    - path: datos/final/tabla_modelado.parquet
+      hash: md5
+      md5: 1a8645af29dc4642407eff34315bce01
+      size: 10448
+    - path: docs/diccionario/descripciones.yaml
+      hash: md5
+      md5: 7d53a2bc87b9495fbe7e445ea4e6aa8d
+      size: 2496
+    - path: src/diccionario.py
+      hash: md5
+      md5: 6f8410fa21eb81c3a7544c383064771e
+      size: 1870
+    outs:
+    - path: docs/diccionario/diccionario.csv
+      hash: md5
+      md5: 702435186d13a5ff14d32dd27c3eedf3
+      size: 1926

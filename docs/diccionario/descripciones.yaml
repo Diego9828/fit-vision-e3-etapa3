@@ -1,0 +1,72 @@
+# Descripción humana de cada columna de datos/final/tabla_modelado.*
+# El stage `diccionario` falla si falta alguna columna o si el tipo no coincide.
+clip_id:
+  tipo: string
+  unidad: "-"
+  origen: "3.1 seleccionar"
+  descripcion: Identificador del clip. Un clip es un segmento = una repetición del ejercicio. Clave de la fila.
+video:
+  tipo: string
+  unidad: "-"
+  origen: "3.1 seleccionar"
+  descripcion: Video de origen del clip (código tipo HHMMSS). Se usa como grupo para la partición; no es predictor.
+fold:
+  tipo: int
+  unidad: "-"
+  origen: "3.5 formatear"
+  descripcion: Pliegue de validación (0..n_splits-1) asignado con GroupKFold por video. La fila es de prueba en su pliegue y de entrenamiento en los demás.
+n_frames:
+  tipo: int
+  unidad: frames
+  origen: "3.3 construir"
+  descripcion: Frames del clip tras la limpieza. Metadato de control; no usar como predictor.
+postura_torso_media:
+  tipo: float
+  unidad: grados
+  origen: "3.3 construir"
+  descripcion: Media por clip de la inclinación del torso (señal de pose MediaPipe).
+postura_torso_desv:
+  tipo: float
+  unidad: grados
+  origen: "3.3 construir"
+  descripcion: Desviación estándar (poblacional) por clip de la inclinación del torso.
+nivel_cabeza_media:
+  tipo: float
+  unidad: grados
+  origen: "3.3 construir"
+  descripcion: Media por clip del nivel de la cabeza.
+nivel_cabeza_desv:
+  tipo: float
+  unidad: grados
+  origen: "3.3 construir"
+  descripcion: Desviación estándar (poblacional) por clip del nivel de la cabeza.
+apertura_mano_izq_media:
+  tipo: float
+  unidad: razón
+  origen: "3.3 construir"
+  descripcion: Media por clip de la apertura de la mano izquierda (razón adimensional).
+apertura_mano_izq_desv:
+  tipo: float
+  unidad: razón
+  origen: "3.3 construir"
+  descripcion: Desviación estándar (poblacional) por clip de la apertura de la mano izquierda.
+angulo_pie_izq_media:
+  tipo: float
+  unidad: grados
+  origen: "3.3 construir"
+  descripcion: Media por clip del ángulo del pie izquierdo.
+angulo_pie_izq_desv:
+  tipo: float
+  unidad: grados
+  origen: "3.3 construir"
+  descripcion: Desviación estándar (poblacional) por clip del ángulo del pie izquierdo.
+etiqueta:
+  tipo: string
+  unidad: "-"
+  origen: "3.1 seleccionar"
+  descripcion: Calidad de ejecución según la fisioterapeuta (bien / mal). Variable objetivo en texto.
+y:
+  tipo: int
+  unidad: "-"
+  origen: "3.5 formatear"
+  descripcion: Variable objetivo codificada según formato.codificacion_etiqueta (bien = 1, mal = 0).

@@ -23,3 +23,12 @@ limpieza:
 construccion:
   estadisticos: {media: mean, desv: std}   # sufijo de columna: función de pandas
   ddof: 0
+
+particion:
+  columna_grupo: video
+  n_splits: 4
+
+formato:
+  columna_objetivo: y
+  columna_fold: fold
+  codificacion_etiqueta: {mal: 0, bien: 1}
