@@ -1,0 +1,58 @@
+name: reproducibilidad
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  reproducir:
+    runs-on: ubuntu-latest
+    env:
+      # Credenciales del remoto: SOLO como secretos del repositorio (Settings → Secrets).
+      # Ajustar a la nube elegida; con S3:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar entorno (versiones fijadas)
+        run: |
+          pip install -r requirements.txt
+          pip install dvc-s3   # cambiar por dvc-gs o dvc-gdrive según el remoto
+
+      - name: Recuperar los datos desde el remoto
+        run: dvc pull
+
+      - name: Rehacerlo todo, sin atajos de caché
+        run: dvc repro --force
+
+      - name: Veredicto — la anotación no debe cambiar
+        run: git diff --exit-code dvc.lock
+
+      - name: params.yaml y dvc.lock cambian juntos
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1
+          cambios=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD")
+          if echo "$cambios" | grep -qx 'params.yaml'; then
+            echo "$cambios" | grep -qx 'dvc.lock' || { echo "params.yaml cambió sin dvc.lock"; exit 1; }
+          fi
+
+      - name: Criterios de aceptación verificables
+        run: python tools/verificar_criterios.py --sin-repro
+
+      - name: Publicar métricas y grafo en el resumen
+        if: always()
+        run: |
+          {
+            echo "## Métricas"; echo '```'; dvc metrics show; echo '```'
+            echo "## Grafo de etapas"; echo '```'; dvc dag; echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
