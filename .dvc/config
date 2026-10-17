@@ -1,2 +1,6 @@
 [core]
     analytics = false
+    remote = almacen
+['remote "almacen"']
+    url = s3://REEMPLAZAR-NOMBRE-DEL-BUCKET/fitvision/datos
+    region = us-east-2

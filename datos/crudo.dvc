@@ -1,0 +1,6 @@
+outs:
+- md5: 3e7ba04c658a0a182cfa7488a6d3c077.dir
+  size: 7777
+  nfiles: 21
+  hash: md5
+  path: crudo
